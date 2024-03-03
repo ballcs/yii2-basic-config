@@ -46,7 +46,7 @@ jobs:
       - run:
           name: Create non-admin user and grant privileges
           command: |
-            sudo mysql -u root -e "CREATE USER IF NOT EXISTS 'tester' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON yii2basic_test.* TO 'tester'@'%'; FLUSH PRIVILEGES;"
+            sudo mysql -u root -e "CREATE USER IF NOT EXISTS 'dev' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON yii2basic_test.* TO 'dev'@'%'; FLUSH PRIVILEGES;"
 
       # Run Codeception tests
       - run: ./vendor/bin/codecept run
@@ -73,7 +73,7 @@ jobs:
       # Deploy via SSH
       - run:
           name: Deploy via SSH
-          command: sshpass -p "${PASSWORDYII2}" ssh -v -o StrictHostKeyChecking=no ${USERNAMEYII2}@${IPYII2} 'cd /var/www/html/tests && git clone https://github.com/pkprateep-bot/yii2-basic-config && echo "<?php return ['host' => '127.0.0.1', 'username' => '${USERNAMEYII2}', 'password' => 'password2']; ?>" > /var/www/html/tests/yii2-basic-config/config/db.php && echo "Deployment successful!"'
+          command: sshpass -p "${PASSWORDYII2}" ssh -v -o StrictHostKeyChecking=no ${USERNAMEYII2}@${IPYII2} 'cd /var/www/html/dev3 && git pull && echo "Deployment successful!"'
 
 # Orchestrate our job run sequence
 workflows:
