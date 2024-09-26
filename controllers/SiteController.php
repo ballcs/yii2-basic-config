@@ -95,6 +95,17 @@ class SiteController extends Controller {
                     'model' => $model,
         ]);
     }
+/*
+    public function actionSignupUser(){
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        if($model){
+        $model = new SignupForm();
+
+
+        return ['response'=>'Ok'];
+
+    }*/
 
     public function actionContact() {
         $model = new ContactForm();
